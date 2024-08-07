@@ -33,11 +33,123 @@
               "zone.js/testing"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/apx-side-menu/**/*.ts",
+              "projects/apx-side-menu/**/*.html"
+            ],
+            "eslintConfig": "projects/apx-side-menu/eslint.config.js"
+          }
+        }
+      }
+    },
+    "apx-testbed-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/apx-testbed-app",
+      "sourceRoot": "projects/apx-testbed-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/apx-testbed-app",
+            "index": "projects/apx-testbed-app/src/index.html",
+            "browser": "projects/apx-testbed-app/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/apx-testbed-app/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/apx-testbed-app/public"
+              }
+            ],
+            "styles": [
+              "projects/apx-testbed-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "apx-testbed-app:build:production"
+            },
+            "development": {
+              "buildTarget": "apx-testbed-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/apx-testbed-app/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/apx-testbed-app/public"
+              }
+            ],
+            "styles": [
+              "projects/apx-testbed-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/apx-testbed-app/**/*.ts",
+              "projects/apx-testbed-app/**/*.html"
+            ],
+            "eslintConfig": "projects/apx-testbed-app/eslint.config.js"
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "b3b8d1f9-1888-40aa-bc91-0554c55ce6fa"
+    "analytics": "b3b8d1f9-1888-40aa-bc91-0554c55ce6fa",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
