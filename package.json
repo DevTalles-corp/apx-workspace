@@ -11,7 +11,7 @@
     "apx-side-menu:build": "ng build apx-side-menu",
     "apx-side-menu:lint": "ng lint apx-side-menu",
     "apx-side-menu:test": "ng test apx-side-menu --no-watch --no-progress --browsers=ChromeHeadless",
-    "apx-side-menu:publish": "npm run apx-side-menu:test && npm run apx-side-menu:build && npm publish dist/apx-side-menu"
+    "apx-side-menu:publish": "npm run apx-side-menu:test && npm run apx-side-menu:build && npm publish dist/apx-side-menu/"
   },
   "private": true,
   "dependencies": {
